@@ -10,9 +10,14 @@ import pickle
 
 
 # Model
-filename = 'svc_model.pkl'
-model = pickle.load(open(filename, 'rb'))
+@st.cache()
+def upload() :
+    filename = 'svc_model.pkl'
+    model = pickle.load(open(filename, 'rb'))
+    return model
 
+
+model = upload()
 
 
 
@@ -102,8 +107,8 @@ if button_sent :
     with col3 : 
         if i + j == 2 :
 
-            vec = np.array(compareNotice(notice1, notice2, fields)).reshape(1,-1)
-            #vec = np.random.randn(21).reshape(1,-1)
+            vec = np.array(compareNotice(notice1, notice2, fields, title_subfields)).reshape(1,-1)
+            print(vec.shape)
             pred = np.squeeze(model.predict_proba(vec))
             id = np.argmax(pred)
 

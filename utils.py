@@ -212,7 +212,7 @@ def score(y, y_pred) :
     return {"accuracy": accuracy, "precision":precision, "recall" : recall, "F1_score": f1, "Confusion Matrix" : cf_mat}
 
 
-def labelling(x, classifier = rf, threshold = 0.75) : 
+def labelling(x, classifier, threshold = 0.75) : 
 
     # Labelling Data with 3 class (1,0-1) where -1 a value inferior to threshold
     x = x.reshape(1,-1)
